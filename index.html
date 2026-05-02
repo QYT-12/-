@@ -1,171 +1,44 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>校园文明举报通道</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: "微软雅黑", sans-serif;
-        }
-        body {
-            background-color: #f0f7f3;
-            padding: 15px;
-        }
-        .box {
-            max-width: 580px;
-            margin: 20px auto;
-            background: #fff;
-            border-radius: 18px;
-            overflow: hidden;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.05);
-        }
-        .top-bar {
-            background: linear-gradient(135deg,#38b082,#27ae70);
-            color: #fff;
-            text-align: center;
-            padding: 28px 15px;
-        }
-        .top-bar h2 {
-            font-size: 23px;
-            margin-bottom: 6px;
-        }
-        .top-bar p {
-            opacity: 0.9;
-            font-size: 14px;
-        }
-        .form-wrap {
-            padding: 25px;
-        }
-        .item {
-            margin-bottom: 20px;
-        }
-        .item label {
-            display: block;
-            color: #2d3436;
-            font-size: 15px;
-            margin-bottom: 7px;
-        }
-        input,select,textarea {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #d8e3dd;
-            border-radius: 9px;
-            font-size: 15px;
-            background: #fafdfb;
-            outline: none;
-        }
-        input:focus,select:focus,textarea:focus {
-            border-color: #38b082;
-        }
-        textarea {
-            min-height: 120px;
-            resize: none;
-        }
-        .submit {
-            width: 100%;
-            padding: 13px;
-            background: #38b082;
-            border: none;
-            color: #fff;
-            font-size: 16px;
-            border-radius: 9px;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-        .submit:hover {
-            background: #279e70;
-        }
-        .notice {
-            margin-top: 20px;
-            font-size: 13px;
-            color: #555;
-            line-height: 1.7;
-            background: #f4f9f7;
-            padding: 14px;
-            border-radius: 8px;
-        }
-        .status {
-            text-align: center;
-            margin-top: 15px;
-            display: none;
-            color: #38b082;
-        }
-    </style>
-</head>
-<body>
-    <div class="box">
-        <div class="top-bar">
-            <h2>校园文明举报通道</h2>
-            <p>共建和谐校园 · 客观如实反映问题</p>
-        </div>
-
-        <div class="form-wrap">
-            <form id="reportForm" action="https://formsubmit.co/2374107977@qq.com" method="POST">
-                <input type="hidden" name="_subject" value="【新校园举报工单】">
-                <input type="hidden" name="_captcha" value="false">
-                <input type="hidden" name="_template" value="table">
-                <!-- 提交成功后跳转的页面（可以自己做一个成功页，也可以留空） -->
-                <input type="hidden" name="_next" value="">
-
-                <div class="item">
-                    <label>举报类型</label>
-                    <select name="举报类型" required>
-                        <option value="">请选择举报类型</option>
-                        <option>校园欺凌与冲突</option>
-                        <option>纪律作风问题</option>
-                        <option>校园环境卫生</option>
-                        <option>食堂餐饮问题</option>
-                        <option>校园安全隐患</option>
-                        <option>其他校园问题</option>
-                    </select>
-                </div>
-
-                <div class="item">
-                    <label>事件发生时间</label>
-                    <input type="text" name="发生时间" placeholder="例如：几月几日、上午/下午" required>
-                </div>
-
-                <div class="item">
-                    <label>事件发生地点</label>
-                    <input type="text" name="发生地点" placeholder="例如：教室、宿舍、操场、食堂" required>
-                </div>
-
-                <div class="item">
-                    <label>问题详细描述</label>
-                    <textarea name="详细描述" placeholder="请客观、清晰描述事情经过" required></textarea>
-                </div>
-
-                <div class="item">
-                    <label>联系方式（选填）</label>
-                    <input type="text" name="联系方式" placeholder="可匿名不留联系方式">
-                </div>
-
-                <button type="submit" class="submit">提交举报</button>
-            </form>
-
-            <div class="status" id="statusText">提交中...</div>
-
-            <div class="notice">
-                温馨提示：请务必如实反映情况，禁止恶意虚假举报；所有举报信息严格保密，紧急情况请直接联系老师。
-            </div>
-        </div>
+<form action="https://formsubmit.co/2374107977@qq.com" method="POST">
+    <!-- 举报类型 -->
+    <div class="form-group">
+        <label for="type">举报类型 *</label>
+        <select id="type" name="type" required>
+            <option value="">请选择举报类型</option>
+            <option value="校园欺凌">校园欺凌</option>
+            <option value="校园暴力">校园暴力</option>
+            <option value="不文明行为">不文明行为</option>
+            <option value="违规违纪">违规违纪</option>
+            <option value="其他">其他问题</option>
+        </select>
     </div>
 
-<script>
-    const form = document.getElementById('reportForm');
-    const statusText = document.getElementById('statusText');
-    const submitBtn = document.querySelector('.submit');
+    <!-- 被举报人/地点 -->
+    <div class="form-group">
+        <label for="target">被举报人/事件地点 *</label>
+        <input type="text" id="target" name="target" placeholder="例如：XX班XXX / 操场XX角落" required>
+    </div>
 
-    form.addEventListener('submit', function() {
-        submitBtn.disabled = true;
-        submitBtn.textContent = '提交中...';
-        statusText.style.display = 'block';
-        statusText.textContent = '正在提交举报信息，请稍候...';
-    });
-</script>
-</body>
-</html>
+    <!-- 举报人（可选） -->
+    <div class="form-group">
+        <label for="name">你的姓名（可选，可匿名）</label>
+        <input type="text" id="name" name="name" placeholder="不想透露可不填">
+    </div>
+
+    <!-- 联系方式（可选） -->
+    <div class="form-group">
+        <label for="contact">联系方式（可选，方便后续沟通）</label>
+        <input type="text" id="contact" name="contact" placeholder="例如：QQ/手机号">
+    </div>
+
+    <!-- 举报详情 -->
+    <div class="form-group">
+        <label for="message">事件详情 *</label>
+        <textarea id="message" name="message" placeholder="请详细描述事情经过、时间、具体情况，越详细越好..." required></textarea>
+    </div>
+
+    <!-- 提交后跳转配置 -->
+    <input type="hidden" name="_next" value="https://qyt-12.github.io/success.html">
+    <input type="hidden" name="_captcha" value="false">
+
+    <button type="submit">提交举报</button>
+</form>
